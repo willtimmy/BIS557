@@ -10,5 +10,16 @@
 #' summary(fit)
 #' @export
 linear_model <- function(formula, data) {
-  # Your code here.
+  #Get X and Y matrix
+  mat <- model.frame(formula, data)
+  Y <- data.frame(mat[,1])
+  colnames(Y) <- names(mat[1])
+  X <- data.frame(mat[,-1])
+  colnames(X) <- names(mat[-1])
+    
+  beta <- solve((t(X) %*% X)) %*% t(X) %*% Y
+  table <- cbind (beta)
+  colnames(table)[1] <- 'Estimate'
 }
+
+
