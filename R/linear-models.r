@@ -21,5 +21,3 @@ linear_model <- function(formula, data) {
   class(result) <- 'lm'
   result
 }
-
-
