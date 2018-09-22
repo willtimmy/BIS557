@@ -15,12 +15,18 @@ linear_model <- function(formula, data) {
   mat <- model.frame(formula, data)
   Y <- data.frame(mat[,1])
   colnames(Y) <- names(mat[1])
-  X <- data.frame(mat[,-1])
-  colnames(X) <- names(mat[-1])
-    
-  beta <- solve((t(X) %*% X)) %*% t(X) %*% Y
-  table <- cbind (beta)
-  colnames(table)[1] <- 'Estimate'
+  X_1 <- data.frame(mat[,-1])
+  colnames(X_1) <- names(mat[-1])
+  X <- data.frame(Intercept=rep(1:length(Y)))
+  colnames(X) <- c('(Intercept)')
+  X <- cbind(X, X_1)
+  
+  #Calculate coefficients
+  result <- list()
+  X_d <- qr(X)
+  result$coefficients <- qr.coef(X_d, Y)
+  class(result) <- 'lm'
+  result
 }
 
 
