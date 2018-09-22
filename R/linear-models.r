@@ -15,11 +15,7 @@ linear_model <- function(formula, data) {
   mat <- model.frame(formula, data)
   Y <- data.frame(mat[,1])
   colnames(Y) <- names(mat[1])
-  X_1 <- data.frame(mat[,-1])
-  colnames(X_1) <- names(mat[-1])
-  X <- data.frame(Intercept=rep(1:length(Y)))
-  colnames(X) <- c('(Intercept)')
-  X <- cbind(X, X_1)
+  X <- model.matrix(formula, data)
   
   #Calculate coefficients
   result <- list()
