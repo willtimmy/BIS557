@@ -6,9 +6,6 @@
 #' @param data a data.frame
 #' @return An lm object
 #' @importFrom stats model.frame model.matrix
-#' @examples
-#' fit <- linear_model(Sepal.Length ~., iris)
-#' summary(fit)
 #' @export
 linear_model <- function(formula, data) {
   #Get X and Y matrix
