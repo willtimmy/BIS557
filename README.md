@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/willtimmy/bis557-1.svg?branch=master)](https://travis-ci.org/willtimmy/bis557-1)
+[![Build Status](https://travis-ci.org/willtimmy/bis557.svg?branch=master)](https://travis-ci.org/willtimmy/bis557)
 
 BIS557
 ===
