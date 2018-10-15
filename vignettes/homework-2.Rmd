@@ -34,7 +34,10 @@ for (i in 1:length(result$mse)) {
   result$mse[i] <- mean(error^2)
 }
 
-#Select log_lambda
+#Select optimal log_lambda
 result$log_lambda <- log(result$lambda_seq)
 result$log_lambda[result$mse==min(result$mse)]
+
+#Plot
+plot(result$log_lambda, result$mse)
 ```

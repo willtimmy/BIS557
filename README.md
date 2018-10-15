@@ -6,11 +6,15 @@ BIS557
 This is a repository for storing all code, documentation, and digital 
 artifacts for BIS557.
 
-So far the only thing we've done is create and document a function that
-calls `lm`. You can use it like this:
-
+1. linear regression
 ```{R}
 library(bis557)
 fit <- linear_model(Sepal.Length ~., iris)
 summary(fit)
+```
+
+2. ridge regression
+```{r}
+data(ridge_train)
+fit <- ridge_reg(y~., 1, ridge_train)
 ```
