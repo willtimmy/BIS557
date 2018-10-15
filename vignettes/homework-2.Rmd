@@ -45,3 +45,4 @@ result$lambda_seq[result$mse==min(result$mse)]
 #Plot mse over lambda
 plot(result$lambda_seq, result$mse)
 ```
+$\lambda=27.4$ to minimize out-of-sample mse.
