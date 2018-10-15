@@ -24,7 +24,7 @@ predict.ridge_reg <- function(object, ...) {
   m %*% object$coefficients
 }
 
-#Scale training set and test set
+#Scale training set and test set separately
 ridge_train_scale <- data.frame(cbind(ridge_train$y, scale(ridge_train[,-1])))
 ridge_test_scale <- data.frame(cbind(ridge_test$y, scale(ridge_test[,-1])))
 
@@ -39,10 +39,9 @@ for (i in 1:length(result$mse)) {
   result$mse[i] <- mean(error^2)
 }
 
-#Select optimal log_lambda
-result$log_lambda <- log(result$lambda_seq)
+#Select lambda to minimize mse
 result$lambda_seq[result$mse==min(result$mse)]
 
-#Plot
-plot(result$log_lambda, result$mse)
+#Plot mse over lambda
+plot(result$lambda_seq, result$mse)
 ```
