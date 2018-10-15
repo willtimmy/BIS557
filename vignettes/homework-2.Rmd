@@ -10,6 +10,7 @@ output: html_document
 -->
 
 ## The ridge regression
+Calculate the out-of-sample mean square error as $\lambda$ varies.
 
 ```{r}
 library(bis557)
@@ -23,14 +24,18 @@ predict.ridge_reg <- function(object, ...) {
   m %*% object$coefficients
 }
 
+#Scale training set and test set
+ridge_train_scale <- data.frame(cbind(ridge_train$y, scale(ridge_train[,-1])))
+ridge_test_scale <- data.frame(cbind(ridge_test$y, scale(ridge_test[,-1])))
+
 lambda_seq <- seq(0, 100, by=0.1)
 mse <- rep(NA, length(lambda_seq))
 result <- data.frame(cbind(lambda_seq, mse))
 
 #Calculate mse
 for (i in 1:length(result$mse)) {
-  fit <- ridge_reg(y~., result$lambda_seq[i], ridge_train)
-  error <- ridge_test$y - predict.ridge_reg(fit, ridge_test)
+  fit <- ridge_reg(V1~., result$lambda_seq[i], ridge_train_scale)
+  error <- ridge_test_scale$V1 - predict.ridge_reg(fit, ridge_test_scale)
   result$mse[i] <- mean(error^2)
 }
 
