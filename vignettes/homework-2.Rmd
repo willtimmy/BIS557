@@ -1,11 +1,9 @@
 ---
 title: "The Ridge Regression"
 author: "Qi Tan"
-output:
-  html_document:
-    self_contained: yes
-    toc: true
+output: html_document
 ---
+
 <!--
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{The ridge regression vignette}

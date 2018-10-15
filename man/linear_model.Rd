@@ -15,5 +15,5 @@ linear_model(formula, data)
 An lm object
 }
 \description{
-This function passes parameters to the lm function.
+This function passes parameters to the linear_model function.
 }
