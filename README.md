@@ -18,3 +18,5 @@ summary(fit)
 data(ridge_train)
 fit <- ridge_reg(y~., 1, ridge_train)
 ```
+
+3. Kernel density
