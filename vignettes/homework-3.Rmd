@@ -6,7 +6,7 @@ output: html_document
 
 <!--
 %\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{The ridge regression vignette}
+%\VignetteIndexEntry{The Homework3 vignette}
 -->
 
 ## 1. (P117-7) Write a function kern_density that accepts a training vector x, bandwidth h, and test set x_new, returning the kernel density estimate from the Epanechnikov kernel. Visually test how this performs for some hand constructed datasets and bandwidths.
