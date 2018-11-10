@@ -92,7 +92,7 @@ Then elastic net is convex because sum of convex functions is convex.
 
 ## 5. (P200-6) Find the KKT conditions for glmnet when 0 < α ≤ 1 and implement a lasso_reg_with_screening function that takes an α parameter.
 ```{r}
-require(glmnet)
+#require(glmnet)
 #Check current KKT conditions for regression vector (P189)
 casl_lenet_check_kkt <- function(X, y, b, lambda) {
   resids <- y - X %*% b
