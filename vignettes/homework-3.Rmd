@@ -2,12 +2,11 @@
 title: "Homework-3"
 author: "Qi Tan"
 output: html_document
----
-
-<!--
+vignette: >
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{The Homework3 vignette}
--->
+
+---
 
 ## 1. (P117-7) Write a function kern_density that accepts a training vector x, bandwidth h, and test set x_new, returning the kernel density estimate from the Epanechnikov kernel. Visually test how this performs for some hand constructed datasets and bandwidths.
 Epanechnikov kernel (4.12): $K(x)=\frac{3}{4}(1-x^2)1_{|x|\leq 1}$\
@@ -92,7 +91,7 @@ Then elastic net is convex because sum of convex functions is convex.
 
 ## 5. (P200-6) Find the KKT conditions for glmnet when 0 < α ≤ 1 and implement a lasso_reg_with_screening function that takes an α parameter.
 ```{r}
-#require(glmnet)
+require(glmnet)
 #Check current KKT conditions for regression vector (P189)
 casl_lenet_check_kkt <- function(X, y, b, lambda) {
   resids <- y - X %*% b
