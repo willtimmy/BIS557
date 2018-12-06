@@ -19,4 +19,6 @@ data(ridge_train)
 fit <- ridge_reg(y~., 1, ridge_train)
 ```
 
-3. Kernel density
+3. kernel density
+
+4. sparse matrix
