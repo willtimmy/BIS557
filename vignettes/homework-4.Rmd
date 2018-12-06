@@ -1,0 +1,73 @@
+---
+title: "The Ridge Regression"
+author: "Qi Tan"
+output: html_document
+---
+
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{homework-4 vignette}
+-->
+
+# 1. CASL Number 2 in Exercises 5.8.
+Linear Hessian: $H=X^tX$\
+Hessian matrix: $H=X^tdiag(p(1-p))X$\
+According to formula 2.72, condition number a matrix is the ratio of its largest and smallest singular values, $$cond(A)=\frac{\sigma_{max}}{\sigma_{min}}$$
+```{r}
+X <- matrix(c(2, 1, 1, 2), 2, 2) #create a matrix for X
+beta <- c(0, 10)
+p <- 1/(1+exp(-X %*% beta))
+p
+
+#Calculate condition number of linear Hessian
+H1 <- t(X) %*% X
+svals1 <- svd(H1)$d
+cond_hs <- max(svals1)/min(svals1)
+cond_hs #9
+
+#Calculate condition number of logistic variation
+W <- as.numeric(p*(1-p))
+H2 <- crossprod(X, diag(W) %*% X)
+svals2 <- svd(H2)$d
+cond_lg <- max(svals2)/min(svals2)
+cond_lg #61182.63
+```
+
+Linear Hessian is well-conditioned since it has a low condition number, while logistic variation is ill-conditioned with a high condition number.
+
+
+
+# 2. CASL Number 4 in Exercises 5.8. 
+Using closed-form solution for ridge regression: $$\hat{\beta}^{(\lambda)}=(X^TX+\lambda I_p)^{-1}X^Ty$$
+
+```{r}
+# Solve generalized linear models with Newton-Ralphson method.
+#
+# Args:
+#     X: A numeric data matrix.
+#     y: Response vector.
+#     family: Instance of an R ‘family‘ object.
+#     maxit: Integer maximum number of iterations.
+#     tol: Numeric tolerance parameter.
+#
+# Returns:
+#     Regression vector beta of length ncol(X).
+casl_glm_irwls <- function (X, y, family, maxit=25, tol=1e-10, lambda=1e-4) {
+  beta <- rep(0, ncol(X))
+  for (j in seq_len(maxit)) {
+    b_old <- beta
+    eta <- X %*% beta
+    mu <- family$linkinv(eta)
+    mu_p <- family$mu.eta(eta)
+    z <- eta + (y - mu) / mu_p
+    W <- as.numeric(mu_p^2 / family$variance(mu))
+    XtX <- crossprod(X, diag(W) %*% X)
+    Xtz <- crossprod(X, W * z)
+    I <- diag(ncol(XtX)) #Create I_p
+    R <- lambda*I #lambda*I_p
+    beta <- solve(XtX + R, Xtz)
+    if (sqrt(crossprod(beta - b_old)) < tol) break
+  }
+  beta 
+}
+```
