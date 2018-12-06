@@ -4,6 +4,12 @@ author: "Qi Tan"
 output: html_document
 ---
 
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{homework-3 vignette}
+-->
+
+
 ## 1. (P117-7) Write a function kern_density that accepts a training vector x, bandwidth h, and test set x_new, returning the kernel density estimate from the Epanechnikov kernel. Visually test how this performs for some hand constructed datasets and bandwidths.
 Epanechnikov kernel (4.12): $K(x)=\frac{3}{4}(1-x^2)1_{|x|\leq 1}$\
 Density (4.63): $f_h(x)=\frac{1}{n}\sum_iK_h(x-x_i)$
