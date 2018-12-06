@@ -12,6 +12,8 @@
 #Create sparse.matrix class
 sparse.matrix <- function(i, j, x, dims=(c(max(i), max(j)))) {
   d <- data.frame(i, j, x)
+  d <- d[order(i, j),]
+  row.names(d) <- c(1:nrow(d))
   structure(list(d, dim=dims), class='sparse.matrix')
 }
 
