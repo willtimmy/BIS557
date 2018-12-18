@@ -17,6 +17,7 @@ output:
 Using 2-layer autoencoder, also known as 'deep autoencoder', with 2 hidden layers:
 ```{r}
 library(keras)
+install_keras()
 
 #Parameters required for network:
 batch_size <- 128 
